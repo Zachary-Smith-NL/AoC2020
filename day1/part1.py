@@ -1,43 +1,36 @@
 def day_one(filename="input"):
-    input_file = open(filename, "r")
+    with open(filename, "r") as input_file:
+        values = []
+        maximum_value = -1
+        minimum_value = 2020 #There must be a value less than this in the list for the question to be solveable, so it is safe to set minimum to this
+        for line in input_file:
+            value = int(line.split("\n")[0])
+            values.append(value)
+            if value < minimum_value:
+                minimum_value = value
+            elif value > maximum_value:
+                maximum_value = value
 
-    values = []
-    maximum_value = -1
-    minimum_value = 2020 #There must be a value less than this in the list for the question to be solveable, so it is safe to set minimum to this
-    for line in input_file:
-        value = int(line.split("\n")[0])
-        values.append(value)
-        if value < minimum_value:
-            minimum_value = value
-        elif value > maximum_value:
-            maximum_value = value
-    
-    print(len(values))
+        #Now I have a list of all of the values
+        #First prune the list by removing values that cannot possibly be involved in a correct answer
+        #These values are ones where:
+        # value + maximum_value < 2020
+        # or
+        # value + minimum_value > 2020
+        for value in values:
+            if(value + maximum_value < 2020):
+                values.remove(value)
+            elif(value + minimum_value > 2020):
+                values.remove(value)
 
-    #Now I have a list of all of the values
-    #First prune the list by removing values that cannot possibly be involved in a correct answer
-    #These values are ones where:
-    # value + maximum_value < 2020
-    # or
-    # value + minimum_value > 2020
-    for value in values:
-        if(value + maximum_value < 2020):
-            values.remove(value)
-        elif(value + minimum_value > 2020):
-            values.remove(value)
-    print(len(values))
+        #Now with a reduced list of values, sort the list
+        values.sort()
 
-    #Now with a reduced list of values, sort the list
-    values.sort()
-
-    #With the sorted list, begin checking each value using a binary-search-like method. Check the center of the list, if value + center < 2020, only check top half
-    for value in values:
-        result = checker(value, values)
-        if result != None:
-            return result
-
-    input_file.close()
-    return result
+        #With the sorted list, begin checking each value using a binary-search-like method. Check the center of the list, if value + center < 2020, only check top half
+        for value in values:
+            result = checker(value, values)
+            if result != None:
+                return result
         
 def checker(value, values):
     if(len(values) == 1):
