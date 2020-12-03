@@ -36,6 +36,7 @@ def day_one(filename="input"):
         if result != None:
             return result
 
+    input_file.close()
     return result
         
 def checker(value, values):

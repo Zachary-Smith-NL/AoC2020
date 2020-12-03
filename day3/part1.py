@@ -9,5 +9,6 @@ def day_three(filename="input"):
             slope_sum += 1
         counter = (counter + 3) % len(line)
     print(slope_sum)
+    input_file.close()
 
 day_three()

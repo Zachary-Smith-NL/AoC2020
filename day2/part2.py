@@ -22,8 +22,7 @@ def day_two(filename="input"):
         char_indices[1] = password[char_indices[1]]
         if (char_indices[0] == char) ^ (char_indices[1] == char):
             correct_counter += 1
-
-
     print(correct_counter)
+    input_file.close()
 
 day_two()

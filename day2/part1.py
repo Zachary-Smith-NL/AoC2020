@@ -28,5 +28,6 @@ def day_two(filename="input"):
             continue #Too many of the specified character, incorrect
         correct_counter += 1
     print(correct_counter)
+    input_file.close()
 
 day_two()

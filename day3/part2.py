@@ -16,6 +16,7 @@ def day_three(filename="input"):
             if(line[counter] == "#"):
                 slope_sum[i] += 1
             counter = (counter + right) % len(line)
+        input_file.close()
     slope_total = 1
     for value in slope_sum:
         slope_total *= value

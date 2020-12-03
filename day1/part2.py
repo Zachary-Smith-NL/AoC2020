@@ -17,4 +17,5 @@ def day_one_2(filename="input"):
                     #If values aren't the same & add up to 2020
                     print(value * value2 * value3)
                     return
+    input_file.close()
 day_one_2()
